@@ -581,9 +581,8 @@ def default_audit_plist(baseline_name, build_path, baseline_yaml):
 def generate_script(baseline_name, audit_name, build_path, baseline_yaml, reference, version_yaml):
     """Generates the zsh script from the rules in the baseline YAML
     """
-    version = version_yaml["version"]
-    build = version_yaml["build"]
-    mscp_version = f'{version.split()[-1]}.{build}'
+    version = version_yaml['version']
+    mscp_version = version_yaml["mscp_version"]
     compliance_script_file = open(f'{build_path}/{baseline_name}_compliance_v{mscp_version}.sh', 'w')
 
     check_function_string = ""
@@ -1346,7 +1345,7 @@ def get_rule_yaml(rule_file, baseline_yaml, custom=False,):
     return resulting_yaml
 
 
-def generate_xls(baseline_name, build_path, baseline_yaml):
+def generate_xls(baseline_name, build_path, baseline_yaml, version_yaml):
     """Using the baseline yaml file, create an XLS document containing the YAML fields
     """
 
@@ -1357,7 +1356,7 @@ def generate_xls(baseline_name, build_path, baseline_yaml):
     parent_dir = os.path.dirname(file_dir)
 
     # Output files
-    xls_output_file = f"{build_path}/{baseline_name}.xls"
+    xls_output_file = f"{build_path}/{baseline_name}_v{version_yaml['mscp_version']}.xls"
 
 
     wb = Workbook()
@@ -1745,9 +1744,6 @@ def main():
                 os.makedirs(build_path)
             except OSError:
                 print(f"Creation of the directory {build_path} failed")
-        adoc_output_file = open(f"{build_path}/{output_filename}.adoc", 'w')
-        print('Profile YAML:', args.baseline.name)
-        print('Output path:', adoc_output_file.name)
 
         if args.hash:
             signing = True
@@ -1771,6 +1767,15 @@ def main():
     version_file = os.path.join(parent_dir, "VERSION.yaml")
     with open(version_file) as r:
         version_yaml = yaml.load(r, Loader=yaml.SafeLoader)
+    
+    if version_yaml["build"] == 0:
+        version_yaml["mscp_version"] = f"{version_yaml['version'].split()[-1]}"
+    else:
+        version_yaml["mscp_version"] = f"{version_yaml['version'].split()[-1]}.{version_yaml['build']}"
+    
+    adoc_output_file = open(f'{build_path}/{output_filename}_v{version_yaml["mscp_version"]}.adoc', 'w')
+    print('Profile YAML:', args.baseline.name)
+    print('Output path:', adoc_output_file.name)
 
     adoc_templates = [ "adoc_rule_ios",
                     "adoc_rule",
@@ -1886,7 +1891,11 @@ def main():
         adoc_html_subtitle=baseline_yaml['title'].split(':')[1]
         adoc_document_subtitle2 = ':document-subtitle2:'
     
-    # Create header    
+    # Create header
+    if version_yaml['build'] == 0:
+        header_version = version_yaml['version']
+    else:
+        header_version = f'{version_yaml["version"]}.{version_yaml["build"]}'    
     header_adoc = adoc_header_template.substitute(
         description=baseline_yaml['description'],
         html_header_title=baseline_yaml['title'],
@@ -1901,7 +1910,7 @@ def main():
         stig_attribute=adoc_STIG_show,
         cis_attribute=adoc_cis_show,
         cmmc_attribute=adoc_cmmc_show,
-        version=version_yaml['version'],
+        version=header_version,
         os_version=version_yaml['os'],
         release_date=version_yaml['date']
     )
@@ -2214,7 +2223,7 @@ def main():
 
     if args.xls:
         print('Generating excel document...')
-        generate_xls(baseline_name, build_path, baseline_yaml)
+        generate_xls(baseline_name, build_path, baseline_yaml, version_yaml)
 
     asciidoctor_path = is_asciidoctor_installed()
     if asciidoctor_path != "":
