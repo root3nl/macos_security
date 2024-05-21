@@ -29,7 +29,7 @@ jobs:
               NEW_BUILD=$((CURRENT_BUILD+1))
 
               echo "$NEW_BUILD"
-              echo "NEWBUID=$NEW_BUILD" >> $GITHUB_OUTPUT
+              echo "NEWBUILD=$NEW_BUILD" >> $GITHUB_OUTPUT
               sed -i "s/^build.*/build: $NEW_BUILD/" VERSION.yaml
             fi
       - name: Push commit
