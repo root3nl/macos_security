@@ -859,11 +859,15 @@ generate_stats(){{
 
 run_scan(){{
 # append to existing logfile
-if [[ $(/usr/bin/tail -n 1 "$audit_log" 2>/dev/null) = *"Remediation complete" ]]; then
- 	echo "$(date -u) Beginning {baseline_name} baseline scan" >> "$audit_log"
-else
- 	echo "$(date -u) Beginning {baseline_name} baseline scan" > "$audit_log"
+if [[ ! $(/usr/bin/tail -n 1 "$audit_log" 2>/dev/null) = *"Remediation complete" ]]; then
+ 	echo "$(date -u) MSCP COMPLIANCE SCRIPT BUILD INFORMATION" > "$audit_log"
+    echo "$(date -u) MSCP RELEASE: {version}" >> "$audit_log"
+    echo "$(date -u) BUILD: {mscp_version}" >> "$audit_log"
+    echo "$(date -u) BASELINE: {baseline_yaml['title']}" >> "$audit_log"
+    echo "$(date -u) DATE: {date.today()}" >> "$audit_log"
 fi
+
+echo "$(date -u) Beginning {baseline_name} baseline scan" >> "$audit_log"
 
 # run mcxrefresh
 /usr/bin/mcxrefresh -u $CURR_USER_UID
