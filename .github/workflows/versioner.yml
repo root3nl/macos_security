@@ -24,12 +24,12 @@ jobs:
             CURRENT_BUILD=$(awk '/^build/ { print $NF }' VERSION.yaml)
             if [[ -z $CURRENT_BUILD ]];then
                 echo "build: 1" >> VERSION.yaml
-                echo "::set-output name=NEWBUILD::1"
+                echo "NEWBUILD=1" >> $GITHUB_OUTPUT
             else
               NEW_BUILD=$((CURRENT_BUILD+1))
 
               echo "$NEW_BUILD"
-              echo "::set-output name=NEWBUILD::$NEW_BUILD"
+              echo "NEWBUID=$NEW_BUILD" >> $GITHUB_OUTPUT
               sed -i "s/^build.*/build: $NEW_BUILD/" VERSION.yaml
             fi
       - name: Push commit
