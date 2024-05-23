@@ -41,7 +41,7 @@ Civilian agencies are to use the National Checklist Program as required by https
 
 [NOTE]
 ====
-Part 39 of the Federal Acquisition Regulations, section 39.101 paragraph (c) states, “In acquiring information technology, agencies shall include the appropriate information technology security policies and requirements, including use of common security configurations available from the National Institute of Standards and Technology’s website at https://checklists.nist.gov. Agency contracting officers should consult with the requiring official to ensure the appropriate standards are incorporated.”
+Part 39 of the Federal Acquisition Regulations, section 39.101 paragraph (c) states, “In acquiring information technology, agencies shall include the appropriate information technology security policies and requirements, including use of common security configurations available from the National Institute of Standards and Technology’s website at https://checklists.nist.gov. Agency contracting officers should consult with the requiring official to ensure the appropriate standards are incorporated.” 
 ====
 
 == Authors
