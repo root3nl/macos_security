@@ -1,7 +1,7 @@
 id: os_auto_correction_disable
-title: "Disable Auto Correction"
+title: "Disable Auto-Correction"
 discussion: |
-  The device _MUST_ be configured not to use the auto correction feature of the iOS.
+  Auto-correction _MUST_ be disabled.
 check: " "
 fix: |
   This is implemented by a Configuration Profile.

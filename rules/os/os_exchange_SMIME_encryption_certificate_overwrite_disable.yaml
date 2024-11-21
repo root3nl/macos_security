@@ -1,8 +1,6 @@
-id: os_exchange_SMIME_encryption_certificate_overwirte_disable
-title: "Disable changing the S/MIME encryption settings."
+id: os_exchange_SMIME_encryption_certificate_overwrite_disable
+title: "Disable Changing S/MIME Encryption Settings"
 discussion: |
-  The iOS device needs some specific configurations for the Exchange setup to meet the minimum requirements.
-
   The usage of S/MIME encryption _MUST_ be configured to set mail signing as the default.
 check: " "
 fix: |

@@ -1,7 +1,7 @@
 id: os_device_name_change_disable
-title: "Disable device name changes"
+title: "Disable Device Name Change"
 discussion: |
-  The iOS device _MUST_ be configured to disable device name changes.  
+  Device name change _MUST_ be disabled.   
 check: " "
 fix: |
   This is implemented by a Configuration Profile.

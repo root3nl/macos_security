@@ -50,8 +50,7 @@ ASSOCIATED DOCUMENTS
 |===
 
 [%header, cols=2*a]
-.Bundesamt für Sicherheit in der Informationstechnik
-.German Federal Office for Information Security (BSI)
+.German Federal Office for Information Security (Bundesamt für Sicherheit in der Informationstechnik: BSI)
 |===
 |Document Number or Descriptor
 |Document Title 

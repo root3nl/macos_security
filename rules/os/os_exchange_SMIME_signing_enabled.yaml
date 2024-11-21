@@ -1,9 +1,9 @@
 id: os_exchange_SMIME_signing_enabled
-title: "Enable S/MIME signing of mails."
+title: "Enable S/MIME Signing"
 discussion: |
-  The iOS device needs some specific configurations for the Exchange setup to meet the minimum requirements. 
+  S/MIME signing _MUST_ be enabled and set as the default.
 
-  The usage of S/MIME signing _MUST_ be configured to set mail signing as the default.
+  S/MIME signing verifies the sender of an email and ensures that email contents are not altered.
 check: ""
 fix: |
   This is implemented by a Configuration Profile.

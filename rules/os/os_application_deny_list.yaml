@@ -1,7 +1,7 @@
 id: os_application_deny_list
-title: "Apps not allowed on the device"
+title: "Deny Organization-Defined Prohibited Applications"
 discussion: |
-  In case specific apps are allowed to be used on the device a specific list _SHOULD_VALUEONDEMAND_ needs to be defined by the MDM. These apps will not open on the device.
+  Applications which are not permitted for use by the organization _MUST_ be defined in a _SHOULD_VALUEONDEMAND_ list and applied to the device via MDM.
 check: ' '
 fix: |
   This is implemented by a Configuration Profile.

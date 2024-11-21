@@ -1,7 +1,7 @@
 id: os_update_OTAPKI_allow
-title: "Allow OTA Update of PKI"
+title: "Allow OTA PKI Updates"
 discussion: |
-  The device _MUST_ be configured that the OTA update of the PKI is allowed.
+  Over-the-air (OTA) Public Key Infrastructure (PKI) updates _MUST_ be allowed. 
 check: " "
 fix: |
   This is implemented by a Configuration Profile.

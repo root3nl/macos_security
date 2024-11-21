@@ -1,9 +1,9 @@
 id: os_exchange_mail_recents_sync_disable
-title: "Prevent synching of recent recipients."
+title: "Disable Recent Addresses Syncing"
 discussion: |
-  The iOS device needs some specific configurations for the Exchange setup to meet the minimum requirements. 
+  Recent addresses syncing _MUST_ be disabled.
 
-  The synchronization of recent addresses _MUST_ be prevented not to synchronize sensitive addresses locally to the device.
+  Disabling recent address syncing prevents sensitive addresses from being synced locally to the device.
 check: " "
 fix: |
   This is implemented by a Configuration Profile.

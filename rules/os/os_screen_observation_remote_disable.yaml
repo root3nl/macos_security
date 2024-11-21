@@ -1,7 +1,9 @@
 id: os_screen_observation_remote_disable
-title: "Prevent remote screen observation"
+title: "Disable Remote Screen Observation"
 discussion: |
-  The iOS device _MUST_ be configured to prevent remote screen observation via the classroom app to prevent data leakage via the classroom app.  
+  Remote screen observation _MUST_ be disabled.
+
+  Disabling remote screen observation helps to prevent data leaks.
 check: " "
 fix: |
   This is implemented by a Configuration Profile.

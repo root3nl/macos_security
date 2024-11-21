@@ -1,7 +1,9 @@
 id: os_mail_block_remote_content
-title: "Block remote content"
+title: "Block Remote Content"
 discussion: |
-  The user _MUST_ manually block remote content in Settings/Mail/Privacy/Block Remote Content.
+  Remote content _MUST_ be blocked.
+
+  IMPORTANT: This setting must be configured manually by the user. To configure this setting, follow this path: Settings/Mail/Privacy/Block Remote Content.
 check: " "
 fix: |
   This is implemented manually by the user.

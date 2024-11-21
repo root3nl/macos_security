@@ -1,7 +1,9 @@
 id: os_safari_popups_disable
 title: "Disable Safari Popups"
 discussion: |
-  The iOS device _MUST_ be configured to automatically prevent popups on the device to protect users from malicious content.
+  Safari popups _MUST_ be disabled.
+
+  Disabling popups on Safari helps minimize the device's exposure to viruses, malware, and other risks.
 check: " "
 fix: |
   This is implemented by a Configuration Profile.

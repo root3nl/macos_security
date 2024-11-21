@@ -1,7 +1,7 @@
 id: os_unpaired_boot_disable
-title: "Disable the option to recover the device via an unpaired host"
+title: "Disable Recovery via Unpaired Devices"
 discussion: |
-  The iOS device _MUST_ be configured to disable unpaired devices to boot devices into recovery.
+  Device recovery via unpaired device boot _MUST_ be disabled. 
 check: " "
 fix: |
   This is implemented by a Configuration Profile.

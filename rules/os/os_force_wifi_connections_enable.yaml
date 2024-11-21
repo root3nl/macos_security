@@ -1,7 +1,9 @@
-id: os_network_known_only
-title: "Only allow known networks"
+id: os_force_wifi_connections_enable
+title: "Force WiFi Connections to Known Networks"
 discussion: |
-  The iOS device _MUST_ be configured to only allow known networks in case only trustworthy networks can be used. This can have a limitation on connectivity especially when devices are used in area with low or no network connectivity. 
+  The setting to force WiFi connections to known networks _MUST_ be enabled.
+
+  Only allowing known networks can help prevent unauthorized access to an organization's devices and data.
 check: " "
 result:
   string: "true"

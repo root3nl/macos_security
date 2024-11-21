@@ -2535,7 +2535,7 @@ def main():
                 nist_controls = "- N/A"
 
             if "manual" in tags:
-                discussion = rule_yaml['discussion'] + '\n\nNOTE: This rule is marked as manual and may not be able to be automated. It is also excluded in the compliance scan and will not report any results.\n'
+                discussion = rule_yaml['discussion'] + '\n\nNOTE: This rule is marked as manual (i.e., unable to be automated). This rule is excluded from compliance scanning.\n'
             else:
                 discussion = rule_yaml['discussion']
 

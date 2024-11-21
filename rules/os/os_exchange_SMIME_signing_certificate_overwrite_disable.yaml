@@ -1,9 +1,9 @@
-id: os_exchange_SMIME_signing_certificate_overwirte_disable
-title: "Disable changing the S/MIME signing settings."
+id: os_exchange_SMIME_signing_certificate_overwrite_disable
+title: "Disable S/MIME Signing Certificate Overwrite"
 discussion: |
-  The iOS device needs some specific configurations for the Exchange setup to meet the minimum requirements.
+  The S/MIME signing certificate overwrite option _MUST_ be disabled.
 
-  The option for a user to overwrite the of S/MIME configuration _MUST_ prevented.
+  Disabling the option to change the S/MIME signing certificate forces users to use the organization-defined signature. 
 check: " "
 fix: |
   This is implemented by a Configuration Profile.
