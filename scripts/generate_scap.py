@@ -18,6 +18,12 @@ from xml.sax.saxutils import escape
 
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
+def validate_file(arg):
+    if (file := Path(arg)).is_file():
+        return file
+    else:
+        raise FileNotFoundError(arg)
+
 def format_mobileconfig_fix(mobileconfig):
     """Takes a list of domains and setting from a mobileconfig, and reformats it for the output of the fix section of the guide.
     """
@@ -88,6 +94,22 @@ def replace_ocil(xccdf, x):
     result = re.sub(regex, substr, xccdf, 0, re.MULTILINE)
     return result
 
+def disa_stig_rules(stig_id, stig):
+    newtitle = str()
+    regex = r"<title>(SRG.*\d)<\/title>.*.{}".format(stig_id)
+    matches = re.search(regex,stig)
+    #SRG
+    if matches:   
+        newtitle = str(matches.group(1))
+
+    regex = r"Rule id=\"(.*\S)\" we.*.{}".format(stig_id)
+    matches = re.search(regex,stig)
+    #RuleID
+    if matches:
+        newtitle = newtitle + ", " + str(matches.group(1).split("_")[0])
+            
+    # srg-123-456. SV-7891234
+    return newtitle	
 
 def create_args():
     
@@ -101,10 +123,11 @@ def create_args():
                         help="List the available keyword tags to search for.", action="store_true")
     parser.add_argument("-b", "--baseline", default="None",
                         help="Choose a baseline to generate an xml file for, if none is specified it will generate for every rule found.", action="store")
+    parser.add_argument('--disastig','-d',type=validate_file, help="DISA STIG File", required=False)                        
 
     return parser.parse_args()
 
-def generate_scap(all_rules, all_baselines, args):
+def generate_scap(all_rules, all_baselines, args, stig):
     
     export_as = ""
 
@@ -305,7 +328,10 @@ def generate_scap(all_rules, all_baselines, args):
                 rule_yaml['check'] = rule_yaml['check'].replace("$ODV",odv_value)
                 
                 rule_yaml['fix'] = rule_yaml['fix'].replace("$ODV",odv_value)
-            
+                
+
+
+                
                 if "result" in rule_yaml:
                     for result_value in rule_yaml['result']:
                         if "$ODV" == rule_yaml['result'][result_value]:
@@ -327,7 +353,9 @@ def generate_scap(all_rules, all_baselines, args):
                 
             except:
                 odv_label = "recommended"
-                
+            if args.disastig and args.oval:
+                rule_yaml['title'] = disa_stig_rules(rule_yaml['references']['disa_stig'][0], stig)   
+
             for baseline in all_baselines:
                     found_rules = []
                     for tag in rule_yaml['tags']:
@@ -3700,7 +3728,9 @@ def main():
     os.chdir(file_dir)
 
     all_rules = collect_rules()
-    
+    file = open(args.disastig, "r")
+    stig = file.read()
+
     all_rules_pruned = []
 
     # for rule in all_rules:
@@ -3726,7 +3756,7 @@ def main():
             if rule.rule_id not in all_rules_pruned:
                 all_rules_pruned.append(rule.rule_id)
     
-    generate_scap(all_rules_pruned, all_baselines, args)
+    generate_scap(all_rules_pruned, all_baselines, args, stig)
 
     os.chdir(original_working_directory)
 
