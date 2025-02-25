@@ -123,7 +123,7 @@ def create_args():
                         help="List the available keyword tags to search for.", action="store_true")
     parser.add_argument("-b", "--baseline", default="None",
                         help="Choose a baseline to generate an xml file for, if none is specified it will generate for every rule found.", action="store")
-    parser.add_argument('--disastig','-d',type=validate_file, help="DISA STIG File", required=False)                        
+    parser.add_argument('--disastig','-d', default=None, type=validate_file, help="DISA STIG File", required=False)                        
 
     return parser.parse_args()
 
@@ -1463,7 +1463,7 @@ def generate_scap(all_rules, all_baselines, args, stig):
                 <textfilecontent54_object id="oval:mscp:obj:{}" version="1" comment="{}__sudoers.d_object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
                 <behaviors ignore_case="true"/>
                 <path>/etc/sudoers.d/</path>
-                <filename operation="pattern match">*</filename>
+                <filename operation="pattern match">.*</filename>
                 <pattern operation="pattern match">{}</pattern>
                 <instance datatype="int">1</instance>
             </textfilecontent54_object>'''.format(x+5051, rule_yaml['id'] + "_" + odv_label, check_string)
@@ -1528,7 +1528,7 @@ def generate_scap(all_rules, all_baselines, args, stig):
                     <textfilecontent54_object id="oval:mscp:obj:{}" version="1" comment="{}__sudoers.d_object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
                     <behaviors ignore_case="true"/>
                     <path>/etc/sudoers.d/</path>
-                    <filename operation="pattern match">*</filename>
+                    <filename operation="pattern match">.*</filename>
                     <pattern operation="pattern match">timestamp_type</pattern>
                     <instance datatype="int">1</instance>
                 </textfilecontent54_object>'''.format(x+8000, rule_yaml['id'] + "_" + odv_label)
@@ -1537,7 +1537,7 @@ def generate_scap(all_rules, all_baselines, args, stig):
                     <textfilecontent54_object id="oval:mscp:obj:{}" version="1" comment="{}__sudoers.d_object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
                     <behaviors ignore_case="true"/>
                     <path>/etc/sudoers.d/</path>
-                    <filename operation="pattern match">*</filename>
+                    <filename operation="pattern match">.*</filename>
                     <pattern operation="pattern match">!tty_tickets</pattern>
                     <instance datatype="int">1</instance>
                 </textfilecontent54_object>'''.format(x+8001, rule_yaml['id'] + "_" + odv_label)
@@ -1545,7 +1545,7 @@ def generate_scap(all_rules, all_baselines, args, stig):
                     <textfilecontent54_object id="oval:mscp:obj:{}" version="1" comment="{}__sudoers.d_object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
                     <behaviors ignore_case="true"/>
                     <path>/etc/sudoers.d/</path>
-                    <filename operation="pattern match">*</filename>
+                    <filename operation="pattern match">.*</filename>
                     <pattern operation="pattern match">!tty_tickets</pattern>
                     <instance datatype="int">1</instance>
                 </textfilecontent54_object>'''.format(x+8002, rule_yaml['id'] + "_" + odv_label)
@@ -1593,7 +1593,7 @@ def generate_scap(all_rules, all_baselines, args, stig):
                     <textfilecontent54_object id="oval:mscp:obj:{}" version="1" comment="{}__sudoers.d_object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
                     <behaviors ignore_case="true"/>
                     <path>/etc/sudoers.d/</path>
-                    <filename operation="pattern match">*</filename>
+                    <filename operation="pattern match">.*</filename>
                     <pattern operation="pattern match">{}</pattern>
                     <instance datatype="int">1</instance>
                 </textfilecontent54_object>'''.format(x+7000, rule_yaml['id'] + "_" + odv_label, check_string)
@@ -1655,7 +1655,7 @@ def generate_scap(all_rules, all_baselines, args, stig):
                 <textfilecontent54_object id="oval:mscp:obj:{}" version="1" comment="{}__ssh_config.d_object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
                 <behaviors ignore_case="true"/>
                 <path>/etc/ssh/ssh_config.d/</path>
-                <filename operation="pattern match">*</filename>
+                <filename operation="pattern match">.*</filename>
                 <pattern operation="pattern match">{}</pattern>
                 <instance datatype="int">1</instance>
             </textfilecontent54_object>'''.format(x+5010, rule_yaml['id'] + "_" + odv_label, ssh_config_pattern)
@@ -1734,7 +1734,7 @@ def generate_scap(all_rules, all_baselines, args, stig):
                 <textfilecontent54_object id="oval:mscp:obj:{}" version="1" comment="{}__sshd_config.d_object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
                 <behaviors ignore_case="true"/>
                 <path>/etc/ssh/sshd_config.d/</path>
-                <filename operation="pattern match">*</filename>
+                <filename operation="pattern match">.*</filename>
                 <pattern operation="pattern match">{}</pattern>
                 <instance datatype="int">1</instance>
             </textfilecontent54_object>'''.format(x+6000, rule_yaml['id'] + "_" + odv_label, fipslist)
@@ -1799,7 +1799,7 @@ def generate_scap(all_rules, all_baselines, args, stig):
                 <textfilecontent54_object id="oval:mscp:obj:{}" version="1" comment="{}__sshd_config.d_object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
                 <behaviors ignore_case="true"/>
                 <path>/etc/ssh/sshd_config.d/</path>
-                <filename operation="pattern match">*</filename>
+                <filename operation="pattern match">.*</filename>
                 <pattern operation="pattern match">{}</pattern>
                 <instance datatype="int">1</instance>
             </textfilecontent54_object>'''.format(x+6000, rule_yaml['id'] + "_" + odv_label, sshd_config_pattern)
@@ -3726,10 +3726,11 @@ def main():
     original_working_directory = os.getcwd()
 
     os.chdir(file_dir)
-
+    stig = ''
     all_rules = collect_rules()
-    file = open(args.disastig, "r")
-    stig = file.read()
+    if args.disastig:
+        file = open(args.disastig, "r")
+        stig = file.read()
 
     all_rules_pruned = []
 
