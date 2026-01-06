@@ -405,14 +405,7 @@ def concatenate_payload_settings(settings):
 
 
 def generate_profiles(
-    baseline_name,
-    build_path,
-    parent_dir,
-    baseline_yaml,
-    signing,
-    hash="",
-    generate_domain=True,
-    generate_consolidated=True,
+    baseline_name, build_path, parent_dir, baseline_yaml, signing, hash="", generate_domain=True, generate_consolidated=True
 ):
     """Generate the configuration profiles for the rules in the provided baseline YAML file"""
 
@@ -541,7 +534,7 @@ def generate_profiles(
         uuid=False,
         organization="macOS Security Compliance Project",
         displayname=f"{baseline_name} settings",
-        description=f"Consolidated configuration settings for {baseline_name}.",
+        description=f"Consolidated configuration settings for {baseline_name}."
     )
 
     # process the payloads from the yaml file and generate new config profile for each type
@@ -598,12 +591,8 @@ def generate_profiles(
             or (payload == "com.apple.systempreferences")
             or (payload == "com.apple.SetupAssistant.managed")
         ):
-            newProfile.addNewPayload(
-                payload, concatenate_payload_settings(settings), baseline_name
-            )
-            consolidated_profile.addNewPayload(
-                payload, concatenate_payload_settings(settings), baseline_name
-            )
+            newProfile.addNewPayload(payload, concatenate_payload_settings(settings), baseline_name)
+            consolidated_profile.addNewPayload(payload, concatenate_payload_settings(settings), baseline_name)
         else:
             newProfile.addNewPayload(payload, settings, baseline_name)
             consolidated_profile.addNewPayload(payload, settings, baseline_name)
@@ -611,33 +600,19 @@ def generate_profiles(
         if generate_domain:
             with open(settings_plist_file_path, "wb") as settings_plist_file:
                 newProfile.finalizeAndSavePlist(settings_plist_file)
-            with open(
-                unsigned_mobileconfig_file_path, "wb"
-            ) as unsigned_mobileconfig_file:
+            with open(unsigned_mobileconfig_file_path, "wb") as unsigned_mobileconfig_file:
                 newProfile.finalizeAndSave(unsigned_mobileconfig_file)
             if signing:
-                sign_config_profile(
-                    unsigned_mobileconfig_file_path, signed_mobileconfig_file_path, hash
-                )
+                sign_config_profile(unsigned_mobileconfig_file_path, signed_mobileconfig_file_path, hash)
 
     if generate_consolidated:
-        consolidated_mobileconfig_file_path = os.path.join(
-            unsigned_mobileconfig_output_path, f"{baseline_name}.mobileconfig"
-        )
-        with open(
-            consolidated_mobileconfig_file_path, "wb"
-        ) as consolidated_mobileconfig_file:
+        consolidated_mobileconfig_file_path = os.path.join(unsigned_mobileconfig_output_path, f"{baseline_name}.mobileconfig")
+        with open(consolidated_mobileconfig_file_path, "wb") as consolidated_mobileconfig_file:
             consolidated_profile.finalizeAndSave(consolidated_mobileconfig_file)
 
         if signing:
-            signed_consolidated_mobileconfig_path = os.path.join(
-                signed_mobileconfig_output_path, f"{baseline_name}.mobileconfig"
-            )
-            sign_config_profile(
-                consolidated_mobileconfig_file_path,
-                signed_consolidated_mobileconfig_path,
-                hash,
-            )
+            signed_consolidated_mobileconfig_path = os.path.join(signed_mobileconfig_output_path, f"{baseline_name}.mobileconfig")
+            sign_config_profile(consolidated_mobileconfig_file_path, signed_consolidated_mobileconfig_path, hash)
 
     print(
         f"""
@@ -2798,14 +2773,8 @@ def main():
 
         # Single call to generate_profiles with both parameters
         generate_profiles(
-            baseline_name,
-            build_path,
-            parent_dir,
-            baseline_yaml,
-            signing,
-            args.hash,
-            generate_domain=args.profiles,
-            generate_consolidated=args.consolidated_profile,
+            baseline_name, build_path, parent_dir, baseline_yaml, signing, args.hash,
+            generate_domain=args.profiles, generate_consolidated=args.consolidated_profile
         )
 
     if args.ddm:

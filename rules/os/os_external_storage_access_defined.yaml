@@ -3,7 +3,7 @@ title: Access to External Storage Must Be Defined
 discussion: |-
   Access to external storage _MUST_ be managed. 
   
-  NOTE: Apple's built in method using declative device management method only allows you to set external storage manament to Allowed, ReadOnly, and Disallowed.
+  NOTE: Apple's built in method using declarative device management method only allows you to set external storage management to Allowed, ReadOnly, and Disallowed.
 check: |
   /usr/bin/plutil -convert json /var/db/ManagedConfigurationFiles/DiskManagement/DiskManagement_Settings.plist -o - | /usr/bin/jq --raw-output '.Restrictions.ExternalStorage'
 result:
@@ -12,7 +12,7 @@ fix: |
   This is implemented by Declarative Device Management (DDM).
 references:
   cce:
-    - CCE-94188-0
+    - CCE-95188-9
   cci:
     - N/A
   800-53r5:
@@ -33,7 +33,7 @@ odv:
   recommended: Allowed     
   nlmapgov_plus: ReadOnly
 macOS:
-  - '15.0'
+  - '26.0'
 tags:
   - cmmc_lvl2
   - 800-53r5_low

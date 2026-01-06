@@ -24,7 +24,7 @@ fix: |
   NOTE: See the FileVault supplemental to implement this rule.
 references:
   cce:
-    - CCE-94360-5
+    - CCE-95367-9
   cci:
     - CCI-001199
     - CCI-002475
@@ -40,7 +40,7 @@ references:
     - SRG-OS-000405-GPOS-00184
     - SRG-OS-000404-GPOS-00183
   disa_stig:
-    - APPL-15-005020
+    - APPL-26-005020
   800-171r3:
     - 03.13.08
   cis:
@@ -54,7 +54,7 @@ references:
   bio:
     - 8.01.01
 macOS:
-  - '15.0'
+  - '26.0'
 tags:
   - 800-53r5_moderate
   - 800-53r5_high

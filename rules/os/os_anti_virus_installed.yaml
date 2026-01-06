@@ -18,7 +18,7 @@ fix: |
   NOTE: These services cannot be unloaded or loaded while System Integrity Protection (SIP) is enabled.
 references:
   cce:
-    - CCE-94158-3
+    - CCE-95158-2
   cci:
     - CCI-000366
   800-53r5:
@@ -42,7 +42,7 @@ references:
     - 8.07.04
     - 8.19.01
 macOS:
-  - '15.0'
+  - '26.0'
 tags:
   - cis_lvl1
   - cis_lvl2

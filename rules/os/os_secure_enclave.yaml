@@ -16,7 +16,7 @@ fix: |
   The hardware does not support the requirement.
 references:
   cce:
-    - CCE-94289-6
+    - CCE-95293-7
   cci:
     - N/A
   800-53r5:
@@ -33,7 +33,7 @@ references:
   bio:
     - 8.01.01
 macOS:
-  - '15.0'
+  - '26.0'
 tags:
   - inherent
   - cnssi-1253_low

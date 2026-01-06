@@ -34,7 +34,7 @@ fix: |
   ----
 references:
   cce:
-    - CCE-94369-6
+    - CCE-95376-0
   cci:
     - N/A
   800-53r5:
@@ -55,7 +55,7 @@ references:
   cmmc:
     - AC.L2-3.1.10
 macOS:
-  - '15.0'
+  - '26.0'
 tags:
   - cis_lvl2
   - cisv8

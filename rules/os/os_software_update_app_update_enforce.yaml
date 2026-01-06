@@ -1,11 +1,11 @@
-id: system_settings_software_update_enforce
-title: Enforce Software Update Automatically
+id: os_software_update_app_update_enforce
+title: Enforce Software Update App Update Updates Automatically
 discussion: |
-  Software Update _MUST_ be configured to enforce automatic update is enabled.
+  Software Update _MUST_ be configured to enforce automatic updates of App Updates is enabled.
 check: |
   /usr/bin/osascript -l JavaScript << EOS
   $.NSUserDefaults.alloc.initWithSuiteName('com.apple.SoftwareUpdate')\
-  .objectForKey('AutomaticCheckEnabled').js
+  .objectForKey('AutomaticallyInstallAppUpdates').js
   EOS
 result:
   string: 'true'
@@ -13,11 +13,11 @@ fix: |
   This is implemented by a Configuration Profile.
 references:
   cce:
-    - CCE-94397-7
+    - CCE-95402-4
   cci:
     - N/A
   800-53r5:
-    - SI-2(5)
+    - N/A
   800-53r4:
     - N/A
   srg:
@@ -25,19 +25,17 @@ references:
   disa_stig:
     - N/A
   800-171r3:
-    - 03.14.01
-    - 03.14.02
-    - 03.13.03
+    - N/A
   cis:
     benchmark:
-      - 1.2 (level 1)
+      - 1.4 (level 1)
     controls v8:
       - 7.3
       - 7.4
   bio:
     - 8.08.01
 macOS:
-  - '15.0'
+  - '26.0'
 tags:
   - cis_lvl1
   - cis_lvl2
@@ -47,4 +45,4 @@ tags:
 mobileconfig: true
 mobileconfig_info:
   com.apple.SoftwareUpdate:
-    AutomaticCheckEnabled: true
+    AutomaticallyInstallAppUpdates: true

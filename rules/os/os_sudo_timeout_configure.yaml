@@ -11,10 +11,11 @@ fix: |
   ----
   /usr/bin/find /etc/sudoers* -type f -exec sed -i '' '/timestamp_timeout/d' '{}' \;
   /bin/echo "Defaults timestamp_timeout=$ODV" >> /etc/sudoers.d/mscp
+  /bin/chmod 440 /etc/sudoers.d/mscp
   ----
 references:
   cce:
-    - CCE-94311-8
+    - CCE-95317-4
   cci:
     - CCI-002038
   800-53r5:
@@ -24,7 +25,7 @@ references:
   srg:
     - SRG-OS-000373-GPOS-00156
   disa_stig:
-    - APPL-15-004022
+    - APPL-26-004022
   cis:
     benchmark:
       - 5.4 (level 1)
@@ -33,7 +34,7 @@ references:
   bio:
     - 8.27.01
 macOS:
-  - '15.0'
+  - '26.0'
 odv:
   hint: Number of minutes.
   recommended: 0
