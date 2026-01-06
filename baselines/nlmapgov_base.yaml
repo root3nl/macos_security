@@ -1,11 +1,12 @@
-title: "macOS 15.0: Security Configuration - NLMAPGOV - Nederlandse Maatregelenset Apple Platformen Overheid (base)"
+title: "macOS 26.0: Security Configuration - NLMAPGOV - Nederlandse Maatregelenset Apple Platformen Overheid (base)"
 description: |
-  This guide describes the actions to take when securing a macOS 15.0 system against the NLMAPGOV - Nederlandse Maatregelenset Apple Platformen Overheid (base) security baseline.
+  This guide describes the actions to take when securing a macOS 26.0 system against the NLMAPGOV - Nederlandse Maatregelenset Apple Platformen Overheid (base) security baseline.
 authors: |
   *macOS Security Compliance Project*
 
   |===
   |Jordy Witteman|Root3
+  |Aron van den Herik|Root3
   |===
 parent_values: "nlmapgov_base"
 profile:
@@ -34,6 +35,7 @@ profile:
       - os_mdm_require
       - os_safari_open_safe_downloads_disable
       - os_sip_enable
+      - os_software_update_app_update_enforce
       - os_sudo_log_enforce
       - os_time_server_enabled
   - section: "passwordpolicy"
@@ -43,6 +45,7 @@ profile:
     rules:
       - system_settings_automatic_login_disable
       - system_settings_critical_update_install_enforce
+      - system_settings_download_software_update_enforce
       - system_settings_filevault_enforce
       - system_settings_find_my_disable
       - system_settings_gatekeeper_identified_developers_allowed
@@ -50,9 +53,7 @@ profile:
       - system_settings_guest_account_disable
       - system_settings_install_macos_updates_enforce
       - system_settings_loginwindow_loginwindowtext_enable
-      - system_settings_software_update_app_update_enforce
       - system_settings_software_update_download_enforce
-      - system_settings_software_update_enforce
       - system_settings_softwareupdate_current
       - system_settings_time_server_configure
       - system_settings_time_server_enforce
