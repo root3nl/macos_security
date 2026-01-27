@@ -73,7 +73,6 @@ profile:
   - section: "systemsettings"
     rules:
       - system_settings_automatic_login_disable
-      - system_settings_critical_update_install_enforce
       - system_settings_diagnostics_reports_disable
       - system_settings_download_software_update_enforce
       - system_settings_external_intelligence_disable
@@ -100,6 +99,7 @@ profile:
       - system_settings_screensaver_ask_for_password_delay_enforce
       - system_settings_screensaver_password_enforce
       - system_settings_screensaver_timeout_enforce
+      - system_settings_security_update_install
       - system_settings_smbd_disable
       - system_settings_softwareupdate_current
       - system_settings_ssh_disable
