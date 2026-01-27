@@ -30,7 +30,6 @@ profile:
   - section: "macos"
     rules:
       - os_anti_virus_installed
-      - os_config_data_install_enforce
       - os_gatekeeper_enable
       - os_mdm_require
       - os_safari_open_safe_downloads_disable

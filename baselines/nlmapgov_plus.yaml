@@ -36,7 +36,6 @@ profile:
     rules:
       - os_anti_virus_installed
       - os_authenticated_root_enable
-      - os_config_data_install_enforce
       - os_external_storage_access_defined
       - os_gatekeeper_enable
       - os_home_folders_secure
