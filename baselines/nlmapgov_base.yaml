@@ -53,7 +53,6 @@ profile:
       - system_settings_guest_account_disable
       - system_settings_install_macos_updates_enforce
       - system_settings_loginwindow_loginwindowtext_enable
-      - system_settings_software_update_download_enforce
       - system_settings_softwareupdate_current
       - system_settings_time_server_configure
       - system_settings_time_server_enforce
