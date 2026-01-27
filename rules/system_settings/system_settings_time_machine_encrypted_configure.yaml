@@ -35,7 +35,7 @@ references:
       - 3.11
       - 11.3
   bio:
-    - 8.12
+    - 8.12.01
 macOS:
   - '26.0'
 tags:
