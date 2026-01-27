@@ -50,6 +50,8 @@ odv:
   cis_lvl1: 30d
   cis_lvl2: 30d
   stig: 30d
+  nlmapgov_base: 7d
+  nlmapgov_plus: 7d
 tags:
   - cis_lvl1
   - cis_lvl2
